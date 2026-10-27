@@ -1,4 +1,5 @@
-package com.taller.batalla.criaturas;
+package com.taller.batallas.criaturas;
+
 public abstract class Criatura {
 
     protected String nombre;

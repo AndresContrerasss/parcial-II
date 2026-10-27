@@ -1,18 +1,16 @@
-package com.taller.batalla.criaturas;
-
-ackage com.taller.batallas.criaturas;
+package com.taller.batallas.criaturas;
 
 import com.taller.batallas.armas.Arma;
-import com.taller.batallas.interfaces.Volador;
+import com.taller.batallas.interfaces.Magico;
 
-public class Dragon extends Criatura implements Volador {
+public class Mago extends Criatura implements Magico {
 
-    private String escamas;
+    private String hechizo;
     private Arma arma;
 
-    public Dragon(String nombre, int salud, int fuerza, String escamas) {
+    public Mago(String nombre, int salud, int fuerza) {
         super(nombre, salud, fuerza);
-        this.escamas = escamas;
+        this.hechizo = "Bola de energía";
     }
 
     public void equiparArma(Arma arma) {
@@ -27,9 +25,8 @@ public class Dragon extends Criatura implements Volador {
 
     @Override
     public void atacar(Criatura objetivo) {
-        int danio = fuerza * 2;
-        System.out.println(nombre + " ataca con fuego y causa " + danio + " de daño.");
-        objetivo.defender(danio);
+        System.out.println(nombre + " usa magia y causa " + fuerza + " de daño.");
+        objetivo.defender(fuerza);
 
         if (arma != null) {
             arma.atacarConArma(objetivo);
@@ -46,16 +43,17 @@ public class Dragon extends Criatura implements Volador {
     }
 
     @Override
-    public void volar() {
-        System.out.println(nombre + " está volando por el cielo.");
+    public void lanzarHechizo() {
+        System.out.println(nombre + " lanza el hechizo: " + hechizo);
     }
 
     @Override
-    public void aterrizar() {
-        System.out.println(nombre + " ha aterrizado.");
+    public void aprenderHechizo(String hechizo) {
+        this.hechizo = hechizo;
+        System.out.println(nombre + " ha aprendido el hechizo: " + hechizo);
     }
 
-    public String getEscamas() {
-        return escamas;
+    public String getHechizo() {
+        return hechizo;
     }
 }

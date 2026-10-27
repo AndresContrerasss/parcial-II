@@ -1,16 +1,15 @@
-package com.taller.batalla.criaturas;
+package com.taller.batallas.criaturas;
 
 import com.taller.batallas.armas.Arma;
-import com.taller.batallas.interfaces.Magico;
 
-public class Mago extends Criatura implements Magico {
+public class Guerrero extends Criatura {
 
-    private String hechizo;
+    private String tipoArma;
     private Arma arma;
 
-    public Mago(String nombre, int salud, int fuerza) {
+    public Guerrero(String nombre, int salud, int fuerza, String tipoArma) {
         super(nombre, salud, fuerza);
-        this.hechizo = "Bola de energía";
+        this.tipoArma = tipoArma;
     }
 
     public void equiparArma(Arma arma) {
@@ -25,7 +24,7 @@ public class Mago extends Criatura implements Magico {
 
     @Override
     public void atacar(Criatura objetivo) {
-        System.out.println(nombre + " usa magia y causa " + fuerza + " de daño.");
+        System.out.println(nombre + " ataca con su " + tipoArma + " y causa " + fuerza + " de daño.");
         objetivo.defender(fuerza);
 
         if (arma != null) {
@@ -42,18 +41,7 @@ public class Mago extends Criatura implements Magico {
         System.out.println(nombre + " recibe " + danio + " de daño. Salud restante: " + salud);
     }
 
-    @Override
-    public void lanzarHechizo() {
-        System.out.println(nombre + " lanza el hechizo: " + hechizo);
-    }
-
-    @Override
-    public void aprenderHechizo(String hechizo) {
-        this.hechizo = hechizo;
-        System.out.println(nombre + " ha aprendido el hechizo: " + hechizo);
-    }
-
-    public String getHechizo() {
-        return hechizo;
+    public String getTipoArma() {
+        return tipoArma;
     }
 }
