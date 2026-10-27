@@ -1,15 +1,16 @@
-package com.taller.batalla.criaturas;
+package com.taller.batallas.criaturas;
 
 import com.taller.batallas.armas.Arma;
+import com.taller.batallas.interfaces.Volador;
 
-public class Guerrero extends Criatura {
+public class Dragon extends Criatura implements Volador {
 
-    private String tipoArma;
+    private String escamas;
     private Arma arma;
 
-    public Guerrero(String nombre, int salud, int fuerza, String tipoArma) {
+    public Dragon(String nombre, int salud, int fuerza, String escamas) {
         super(nombre, salud, fuerza);
-        this.tipoArma = tipoArma;
+        this.escamas = escamas;
     }
 
     public void equiparArma(Arma arma) {
@@ -24,8 +25,9 @@ public class Guerrero extends Criatura {
 
     @Override
     public void atacar(Criatura objetivo) {
-        System.out.println(nombre + " ataca con su " + tipoArma + " y causa " + fuerza + " de daño.");
-        objetivo.defender(fuerza);
+        int danio = fuerza * 2;
+        System.out.println(nombre + " ataca con fuego y causa " + danio + " de daño.");
+        objetivo.defender(danio);
 
         if (arma != null) {
             arma.atacarConArma(objetivo);
@@ -41,7 +43,17 @@ public class Guerrero extends Criatura {
         System.out.println(nombre + " recibe " + danio + " de daño. Salud restante: " + salud);
     }
 
-    public String getTipoArma() {
-        return tipoArma;
+    @Override
+    public void volar() {
+        System.out.println(nombre + " está volando por el cielo.");
+    }
+
+    @Override
+    public void aterrizar() {
+        System.out.println(nombre + " ha aterrizado.");
+    }
+
+    public String getEscamas() {
+        return escamas;
     }
 }
